@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Inlog Front-end Developer - Github Api</title>
+</head>
+<style>
+    .gh-user-repos {
+        text-align: center;
+        width: 500px;
+        margin: auto;
+    }
+
+    .gh-user-repos div {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+<!-- Este código é apenas um exemplo mas pode ser utilizado como base ;)-->
+<div id="gh-user-repos" class="gh-user-repos">
+
+</div>
+
+<script src="credentials.js"></script>
+
+<script>
+    loadUserRepos();
+
+    function loadUserRepos() {
+        getUserRepos('octocat')
+            .then((result) => {
+                let htmlContainer = document.getElementById('gh-user-repos');
+
+                result.forEach((item, idx) => {
+                    htmlContainer.insertBefore(renderTemplate(idx), htmlContainer.firstChild);
+                });
+
+                function renderTemplate(idx) {
+                    let container = document.createElement('div');
+
+                    container.innerHTML = `
+                        <a href="${result[idx].html_url}">${result[idx].full_name}</a>
+                        <p>language: ${result[idx].language}</p>
+                        <p>stars: ${result[idx].stargazers_count}</p>
+                        <p>forks: ${result[idx].forks}</p>
+                        <p>issues: ${result[idx].forks}</p>`;
+
+                    return container;
+                }
+            })
+            .catch((fail) => console.log(fail));
+    }
+
+    function getUserRepos(username) {
+        let queryString = `/users/${username}/repos`;
+
+        return new Promise(function (resolve, reject) {
+            query(queryString).then(success).catch(fail);
+
+            function success(result) {
+                return resolve(result);
+            }
+
+            function fail(reason) {
+                return reject(reason);
+            }
+        });
+    }
+
+    function query(path) {
+        let apiUrl = 'https://api.github.com' + path;
+        let auth = btoa(credentials.username + ":" + credentials.password);
+
+        let myHeaders = new Headers({
+            "Accept": "application/vnd.github.v3+json",
+            "Authorization": "Basic " + auth
+        });
+
+        let myInit = {
+            method: 'GET',
+            headers: myHeaders,
+        };
+
+        return fetch(apiUrl, myInit)
+            .then(function (response) {
+                // Converter para JSON
+                return response.json();
+            })
+            .then(function (obj) {
+                // obj /retorna um objeto javascript
+                return obj;
+            });
+    }
+</script>
+</body>
+</html>
