@@ -16,7 +16,7 @@ Implementar filtragem na lista de repositórios do usuário da sidebar
 
 - `Activity`: listar os eventos de um determinado usuário [endpoint](https://developer.github.com/v3/activity/events/)  
 - `Repositories`: listar os repositórios do github com maior quantidade de stars ordenados por data da última atualização (pushed): [endpoint](https://developer.github.com/v3/search/#search-repositories)
-- `Top users`: listar os usuários do github com maior número de repositórios e seguidores [endpoit](https://developer.github.com/v3/search/#search-users)
+- `Top users`: listar os usuários do github com maior número de repositórios e seguidores [endpoint](https://developer.github.com/v3/search/#search-users)
 
 Para as três consultas acima, os itens devem ser paginados através do botão load more (10 itens por página)
 
