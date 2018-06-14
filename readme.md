@@ -23,7 +23,7 @@ Para as três consultas acima, os itens devem ser paginados através do botão l
 ---
 
 #### O que vamos avaliar:
- - Capacidade de criar interfaces com alta fidelidade á partir de layouts/protótipos.
+ - Capacidade de criar interfaces com alta fidelidade a partir de layouts/protótipos.
  - Semântica do seu código HTML
  - Estruturação do seu CSS de maneira reaproveitável e utilização de especificações mais recentes (`flexbox`, `grid layout`)
  - Boa lógica de programação e utilização de boas práticas no seu código javascript.
